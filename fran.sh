@@ -1,7 +1,7 @@
 #!/bin/bash
 
 scriptname=$(basename -- $0)
-THENAME=${scriptname%%.*}
+THENAME=${scriptname%.*}
 echo "# using identifier: $THENAME"
 
 echo_sep () {
