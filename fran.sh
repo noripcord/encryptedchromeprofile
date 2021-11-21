@@ -10,8 +10,13 @@ if ! [[ -f "$(which hdiutil)" ]]; then
  exit 1
 fi
 
+# generate names
 scriptname=$(basename -- $0)
 THENAME=${scriptname%.*}
+if [ "$THENAME" == "" ]; then 
+ echo "# error: use .sh or something at the end of the script file, \"$scriptname\" won't work out 'cause script and folder will have same name";
+ exit 1;
+fi
 echo "# using identifier: $THENAME"
 
 echo_sep () {
