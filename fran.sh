@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [ "$(uname)" != "Darwin" ]; then
+ echo "# your platform is not supported"
+ exit 1
+fi
+
+if ! [[ -f "$(which hdiutil)" ]]; then
+ echo "# error: hdiutil not found"
+ exit 1
+fi
+
 scriptname=$(basename -- $0)
 THENAME=${scriptname%.*}
 echo "# using identifier: $THENAME"
