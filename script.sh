@@ -75,7 +75,10 @@ echo $thepass | hdiutil create -encryption -stdinpass -srcfolder "$THENAME" "$TH
 or_die
 echo "# delete folder"
 rm -rf "$THENAME"
-or_die
+or_dieG
 echo "# success"
+echo "#"
+ls -lahS $THENAME*
+echo "#"
 exit 0
 
