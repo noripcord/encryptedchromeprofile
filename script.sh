@@ -10,6 +10,11 @@ if ! [[ -f "$(which hdiutil)" ]]; then
  exit 1
 fi
 
+if ! [[ -d /Applications/Google\ Chrome.app ]]; then
+ echo "# error: chrome not found";
+ exit 1
+fi
+
 # generate names
 scriptname=$(basename -- $0)
 THENAME=${scriptname%.*}
