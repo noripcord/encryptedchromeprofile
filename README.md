@@ -10,7 +10,7 @@ of the script determines the name of the dmg and the profile folder. Script unpa
 
 ## use
 
-./<scriptname>
+./\<scriptname\>
   
   and chrome will open with the new profile. when the browser closes, the profile will be deleted from disk, not before saving all of the content in an encrypted .dmg file.
   
