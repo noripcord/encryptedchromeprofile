@@ -7,3 +7,11 @@ of the script determines the name of the dmg and the profile folder. Script unpa
 
 ## install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/noripcord/encryptedchromeprofile/main/install.sh)"
+
+## use
+
+./<scriptname>
+  
+  and chrome will open with the new profile. when the browser closes, the profile will be deleted from disk, not before saving all of the content in an encrypted .dmg file.
+  
+  
