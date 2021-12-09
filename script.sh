@@ -1,5 +1,7 @@
 #!/bin/bash
 
+OPT_LIZ_DEL=1
+
 if [ "$(uname)" != "Darwin" ]; then
  echo "# your platform is not supported"
  exit 1
@@ -42,6 +44,12 @@ or_die () {
  fi
 }
 
+lizz_del () {
+ item=$1
+ echo "# lizzard delete: $item"
+ rm -r "./$THENAME/$item"
+}
+
 if [ -d "$THENAME" ]; then 
  echo "# $THENAME folder exists, will try to use it" 
 elif [ -f "$THENAME.dmg" ]; then 
@@ -74,6 +82,14 @@ echo_sep
 open_ok
 
 echo "# google chrome did terminate"
+if [ $OPT_LIZ_DEL -eq 1 ]; then 
+  echo "# will do lizzard delete of chrome sh1t, to thin dmg"
+  lizz_del "GrShaderCache"
+  lizz_del "Default/Cache"
+  lizz_del "Default/Service Worker"
+  lizz_del "Default/IndexedDB"
+fi
+
 echo "# encrypt folder"
 echo_sep
 echo $thepass | hdiutil create -encryption -stdinpass -srcfolder "$THENAME" "$THENAME.dmg"
