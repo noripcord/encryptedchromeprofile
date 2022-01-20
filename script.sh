@@ -53,11 +53,16 @@ lizz_del () {
 if [ -d "$THENAME" ]; then 
  echo "# $THENAME folder exists, will try to use it" 
 elif [ -f "$THENAME.dmg" ]; then 
-   echo "# $THENAME.dmg file found, attach"
-   echo "- Enter password to decrypt $THENAME.dmg: "
-   read -s thepass
-   echo_sep
-   echo $thepass | hdiutil attach -stdinpass "$THENAME.dmg"
+   while [ 1 ]; do 
+     echo "# $THENAME.dmg file found, attach"
+     echo "- Enter password to decrypt $THENAME.dmg: "
+     read -s thepass
+     echo_sep
+     echo $thepass | hdiutil attach -stdinpass "$THENAME.dmg"
+     if [ $? -eq 0 ]; then 
+       break;
+     fi
+   done;
    or_die
    echo "# copy contents into $THENAME"
    cp -r "/Volumes/$THENAME" .
@@ -76,6 +81,12 @@ fi
 if [ "$thepass" == "" ]; then
   echo "-Enter password to encrypt $THENAME.dmg: "
   read -s thepass
+  echo "-Repeat: "
+  read -s thepassRepeat
+  if [ "$thepass" != "$thepassRepeat" ]; then 
+    echo "# Passwords did not match"
+    exit 1;
+  fi
 fi
 
 echo_sep
